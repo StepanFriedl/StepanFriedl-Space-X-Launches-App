@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9C5C53F213F711AEB47440A1 /* Pods_Space_X_Launches_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E377F02A99A83AB98A250275 /* Pods_Space_X_Launches_App.framework */; };
+		FD1AD47C2C9734F100698A02 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1AD47B2C9734F100698A02 /* APICaller.swift */; };
+		FD1AD4832C9736D200698A02 /* NetworkConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1AD4822C9736D200698A02 /* NetworkConstant.swift */; };
+		FD1AD4852C9739E900698A02 /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1AD4842C9739E900698A02 /* Launch.swift */; };
 		FDBDCA212C972E6F002B06B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBDCA202C972E6F002B06B3 /* AppDelegate.swift */; };
 		FDBDCA2A2C972E70002B06B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDBDCA292C972E70002B06B3 /* Assets.xcassets */; };
 		FDBDCA2D2C972E70002B06B3 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = FDBDCA2C2C972E70002B06B3 /* Base */; };
@@ -19,6 +22,9 @@
 		1ADAFED7B30AED507D219110 /* Pods-Space-X-Launches-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Space-X-Launches-App.debug.xcconfig"; path = "Target Support Files/Pods-Space-X-Launches-App/Pods-Space-X-Launches-App.debug.xcconfig"; sourceTree = "<group>"; };
 		E0C836499E5261745AC4FFE4 /* Pods-Space-X-Launches-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Space-X-Launches-App.release.xcconfig"; path = "Target Support Files/Pods-Space-X-Launches-App/Pods-Space-X-Launches-App.release.xcconfig"; sourceTree = "<group>"; };
 		E377F02A99A83AB98A250275 /* Pods_Space_X_Launches_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Space_X_Launches_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD1AD47B2C9734F100698A02 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		FD1AD4822C9736D200698A02 /* NetworkConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstant.swift; sourceTree = "<group>"; };
+		FD1AD4842C9739E900698A02 /* Launch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
 		FDBDCA1D2C972E6F002B06B3 /* Space-X-Launches-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Space-X-Launches-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDBDCA202C972E6F002B06B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FDBDCA292C972E70002B06B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,15 +84,15 @@
 		FDBDCA1F2C972E6F002B06B3 /* Space-X-Launches-App */ = {
 			isa = PBXGroup;
 			children = (
-				FDBDCA382C972E95002B06B3 /* Models */,
-				FDBDCA372C972E8F002B06B3 /* ViewModels */,
-				FDBDCA362C972E89002B06B3 /* Views */,
-				FDBDCA352C972E84002B06B3 /* Networking */,
-				FDBDCA342C972E7E002B06B3 /* Resources */,
 				FDBDCA202C972E6F002B06B3 /* AppDelegate.swift */,
 				FDBDCA292C972E70002B06B3 /* Assets.xcassets */,
-				FDBDCA2B2C972E70002B06B3 /* LaunchScreen.storyboard */,
 				FDBDCA2E2C972E70002B06B3 /* Info.plist */,
+				FDBDCA2B2C972E70002B06B3 /* LaunchScreen.storyboard */,
+				FDBDCA382C972E95002B06B3 /* Models */,
+				FDBDCA352C972E84002B06B3 /* Networking */,
+				FDBDCA342C972E7E002B06B3 /* Resources */,
+				FDBDCA372C972E8F002B06B3 /* ViewModels */,
+				FDBDCA362C972E89002B06B3 /* Views */,
 			);
 			path = "Space-X-Launches-App";
 			sourceTree = "<group>";
@@ -101,6 +107,8 @@
 		FDBDCA352C972E84002B06B3 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				FD1AD47B2C9734F100698A02 /* APICaller.swift */,
+				FD1AD4822C9736D200698A02 /* NetworkConstant.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -123,6 +131,7 @@
 		FDBDCA382C972E95002B06B3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FD1AD4842C9739E900698A02 /* Launch.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -154,6 +163,8 @@
 			dependencies = (
 			);
 			name = "Space-X-Launches-App";
+			packageProductDependencies = (
+			);
 			productName = "Space-X-Launches-App";
 			productReference = FDBDCA1D2C972E6F002B06B3 /* Space-X-Launches-App.app */;
 			productType = "com.apple.product-type.application";
@@ -182,6 +193,8 @@
 				Base,
 			);
 			mainGroup = FDBDCA142C972E6F002B06B3;
+			packageReferences = (
+			);
 			productRefGroup = FDBDCA1E2C972E6F002B06B3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -242,8 +255,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellPath = "/opt/homebrew/bin/swiftlint\n/opt/homebrew/bin/swiftlint\n/opt/homebrew/bin/swiftlint";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -253,6 +266,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDBDCA3C2C972ECC002B06B3 /* MainViewController.swift in Sources */,
+				FD1AD4852C9739E900698A02 /* Launch.swift in Sources */,
+				FD1AD47C2C9734F100698A02 /* APICaller.swift in Sources */,
+				FD1AD4832C9736D200698A02 /* NetworkConstant.swift in Sources */,
 				FDBDCA212C972E6F002B06B3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
