@@ -1,0 +1,6 @@
+framework module Pods_Space_X_Launches_App {
+  umbrella header "Pods-Space-X-Launches-App-umbrella.h"
+
+  export *
+  module * { export * }
+}
