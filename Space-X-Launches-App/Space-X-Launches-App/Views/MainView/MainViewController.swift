@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class MainViewController: UIViewController {
 
@@ -60,4 +61,16 @@ class MainViewController: UIViewController {
         }
     }
 
+    func openDetail(_ launchID: String) {
+        guard let launch = viewModel.retrieveLaunch(with: launchID) else {
+            return
+        }
+        let detailsViewModel = DetailsViewModel(launch: launch)
+        let detailsView = DetailViewSwiftUI(viewModel: detailsViewModel)
+        let detailsHostingController = UIHostingController(rootView: detailsView)
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(detailsHostingController, animated: true)
+        }
+    }
+    
 }

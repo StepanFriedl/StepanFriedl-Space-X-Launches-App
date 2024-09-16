@@ -41,6 +41,7 @@ class MainLaunchCell: UITableViewCell {
         if let isSuccess = viewModel.isSuccess {
             cellIconView.isHidden = false
             cellIconView.image = isSuccess ? UIImage(systemName: "checkmark.circle") : UIImage(systemName: "xmark.circle")
+            cellIconView.tintColor = isSuccess ? .green : .red
         } else {
             cellIconView.isHidden = true
         }

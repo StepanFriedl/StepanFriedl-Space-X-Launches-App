@@ -46,4 +46,9 @@ class MainViewModel {
     func getCellTitle(_ launch: Launch) -> String {
         return launch.name ?? ""
     }
+    
+    func retrieveLaunch(with id: String) -> Launch? {
+        dataSource?.first(where: { $0.id == id })
+    }
+    
 }

@@ -11,6 +11,8 @@
 		FD1AD47C2C9734F100698A02 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1AD47B2C9734F100698A02 /* APICaller.swift */; };
 		FD1AD4832C9736D200698A02 /* NetworkConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1AD4822C9736D200698A02 /* NetworkConstant.swift */; };
 		FD1AD4852C9739E900698A02 /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1AD4842C9739E900698A02 /* Launch.swift */; };
+		FD2D53652C985FD400AE40A5 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2D53642C985FD400AE40A5 /* DetailsViewModel.swift */; };
+		FD2D53682C986D4700AE40A5 /* DetailViewSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2D53672C986D4700AE40A5 /* DetailViewSwiftUI.swift */; };
 		FD7A5A5D2C978976004A8AE4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7A5A5C2C978976004A8AE4 /* Extensions.swift */; };
 		FD7A5A5F2C978A6D004A8AE4 /* MainLaunchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7A5A5E2C978A6D004A8AE4 /* MainLaunchCellViewModel.swift */; };
 		FD8A368C2C9762B500A8B5E6 /* MainViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8A368B2C9762B500A8B5E6 /* MainViewController+TableView.swift */; };
@@ -50,6 +52,8 @@
 		FD1AD47B2C9734F100698A02 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		FD1AD4822C9736D200698A02 /* NetworkConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstant.swift; sourceTree = "<group>"; };
 		FD1AD4842C9739E900698A02 /* Launch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
+		FD2D53642C985FD400AE40A5 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
+		FD2D53672C986D4700AE40A5 /* DetailViewSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewSwiftUI.swift; sourceTree = "<group>"; };
 		FD7A5A5C2C978976004A8AE4 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FD7A5A5E2C978A6D004A8AE4 /* MainLaunchCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLaunchCellViewModel.swift; sourceTree = "<group>"; };
 		FD8A368B2C9762B500A8B5E6 /* MainViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+TableView.swift"; sourceTree = "<group>"; };
@@ -108,6 +112,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FD2D53662C986D3900AE40A5 /* DetailViewSwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				FD2D53672C986D4700AE40A5 /* DetailViewSwiftUI.swift */,
+			);
+			path = DetailViewSwiftUI;
+			sourceTree = "<group>";
+		};
 		FD8A368F2C9766A300A8B5E6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				FDBDCA202C972E6F002B06B3 /* AppDelegate.swift */,
-				FDBDCA292C972E70002B06B3 /* Assets.xcassets */,
 				FD8A368F2C9766A300A8B5E6 /* Helpers */,
 				FDBDCA2E2C972E70002B06B3 /* Info.plist */,
 				FDBDCA2B2C972E70002B06B3 /* LaunchScreen.storyboard */,
@@ -166,6 +177,7 @@
 		FDBDCA342C972E7E002B06B3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FDBDCA292C972E70002B06B3 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -182,6 +194,7 @@
 		FDBDCA362C972E89002B06B3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FD2D53662C986D3900AE40A5 /* DetailViewSwiftUI */,
 				FD8A36922C97845C00A8B5E6 /* MainLaunchCell */,
 				FDBDCA392C972EBE002B06B3 /* MainView */,
 			);
@@ -193,6 +206,7 @@
 			children = (
 				FD8A368D2C97639C00A8B5E6 /* MainViewModel.swift */,
 				FD7A5A5E2C978A6D004A8AE4 /* MainLaunchCellViewModel.swift */,
+				FD2D53642C985FD400AE40A5 /* DetailsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -392,10 +406,12 @@
 				FD8A36912C9766B200A8B5E6 /* Observable.swift in Sources */,
 				FD8A368E2C97639C00A8B5E6 /* MainViewModel.swift in Sources */,
 				FDBDCA3C2C972ECC002B06B3 /* MainViewController.swift in Sources */,
+				FD2D53652C985FD400AE40A5 /* DetailsViewModel.swift in Sources */,
 				FD8A368C2C9762B500A8B5E6 /* MainViewController+TableView.swift in Sources */,
 				FD7A5A5F2C978A6D004A8AE4 /* MainLaunchCellViewModel.swift in Sources */,
 				FD1AD4852C9739E900698A02 /* Launch.swift in Sources */,
 				FD7A5A5D2C978976004A8AE4 /* Extensions.swift in Sources */,
+				FD2D53682C986D4700AE40A5 /* DetailViewSwiftUI.swift in Sources */,
 				FD1AD47C2C9734F100698A02 /* APICaller.swift in Sources */,
 				FD8A36952C97848A00A8B5E6 /* MainLaunchCell.swift in Sources */,
 				FD1AD4832C9736D200698A02 /* NetworkConstant.swift in Sources */,
@@ -490,7 +506,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -547,7 +563,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
