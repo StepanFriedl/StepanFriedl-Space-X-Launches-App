@@ -19,3 +19,26 @@ extension UIView {
         self.layer.borderColor = color.cgColor
     }
 }
+
+extension String {
+    
+    func toDate(format: String = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timeZone: TimeZone = .current) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.timeZone = timeZone
+        return dateFormatter.date(from: self)
+    }
+    
+    func toUrl() -> URL? {
+        return URL(string: self)
+    }
+    
+}
+
+extension URL {
+    
+    func openInBrowser() {
+        UIApplication.shared.open(self, options: [:], completionHandler: nil)
+    }
+    
+}

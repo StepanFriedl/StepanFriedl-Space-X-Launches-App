@@ -134,7 +134,7 @@ struct Crew: Codable {
 }
 
 // MARK: - Failure
-struct Failure: Codable {
+struct Failure: Codable, Hashable {
     let time: Int?
     let altitude: Int?
     let reason: String?
@@ -144,6 +144,12 @@ struct Failure: Codable {
         time = try container.decodeIfPresent(Int.self, forKey: .time)
         altitude = try container.decodeIfPresent(Int.self, forKey: .altitude)
         reason = try container.decodeIfPresent(String.self, forKey: .reason)
+    }
+    
+    init(time: Int?, altitude: Int?, reason: String?) {
+        self.time = time
+        self.altitude = altitude
+        self.reason = reason
     }
 }
 
