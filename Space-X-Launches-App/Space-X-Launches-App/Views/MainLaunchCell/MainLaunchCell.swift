@@ -26,7 +26,6 @@ class MainLaunchCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
         cellBackgroundView.addBorder(color: .systemGray2, width: 1)
         cellBackgroundView.round()
         

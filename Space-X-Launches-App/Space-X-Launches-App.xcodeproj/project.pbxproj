@@ -33,6 +33,7 @@
 		FDCBBBD32C9849A600C29C06 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1AD47B2C9734F100698A02 /* APICaller.swift */; };
 		FDCBBBD42C9849AB00C29C06 /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1AD4842C9739E900698A02 /* Launch.swift */; };
 		FDCBBBD52C9849BF00C29C06 /* NetworkConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1AD4822C9736D200698A02 /* NetworkConstant.swift */; };
+		FDF418AE2C98A1B6009BC7C8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDF418AC2C98A1B6009BC7C8 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,9 @@
 		FDCBBBC22C98442800C29C06 /* Space_X_Launches_App_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Space_X_Launches_App_UITests.swift; sourceTree = "<group>"; };
 		FDCBBBC42C98442800C29C06 /* Space_X_Launches_App_UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Space_X_Launches_App_UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FDCBBBCC2C98461200C29C06 /* APICallerLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICallerLaunchTests.swift; sourceTree = "<group>"; };
+		FDF418AB2C98A179009BC7C8 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		FDF418AD2C98A1B6009BC7C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FDF418AF2C98A1BA009BC7C8 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +174,7 @@
 				FDBDCA342C972E7E002B06B3 /* Resources */,
 				FDBDCA372C972E8F002B06B3 /* ViewModels */,
 				FDBDCA362C972E89002B06B3 /* Views */,
+				FDF418AC2C98A1B6009BC7C8 /* Localizable.strings */,
 			);
 			path = "Space-X-Launches-App";
 			sourceTree = "<group>";
@@ -319,6 +324,7 @@
 			knownRegions = (
 				en,
 				Base,
+				cs,
 			);
 			mainGroup = FDBDCA142C972E6F002B06B3;
 			packageReferences = (
@@ -339,6 +345,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDF418AE2C98A1B6009BC7C8 /* Localizable.strings in Resources */,
 				FDBDCA2A2C972E70002B06B3 /* Assets.xcassets in Resources */,
 				FDBDCA2D2C972E70002B06B3 /* Base in Resources */,
 				FDBDCA3D2C972ECC002B06B3 /* MainViewController.xib in Resources */,
@@ -447,8 +454,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				FDBDCA2C2C972E70002B06B3 /* Base */,
+				FDF418AB2C98A179009BC7C8 /* cs */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		FDF418AC2C98A1B6009BC7C8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FDF418AD2C98A1B6009BC7C8 /* en */,
+				FDF418AF2C98A1BA009BC7C8 /* cs */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -459,6 +476,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -522,6 +540,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

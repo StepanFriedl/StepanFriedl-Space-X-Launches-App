@@ -25,16 +25,25 @@ class MainViewController: UIViewController {
         viewModel.getData()
         configView()
         bindViewmodel()
+        
     }
     
     func configView() {
-        self.title = "All past launches"
+        self.title = "allPastLaunched".localized()
         self.view.backgroundColor = .systemBackground
         
-        let sortButton = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(showSortingOptions))
-        self.navigationItem.rightBarButtonItem = sortButton
+        setupToolbarButtons()
         
         setupTableView()
+    }
+    
+    func setupToolbarButtons() {
+        let sortButton = UIBarButtonItem(title: "sort".localized(), style: .plain, target: self, action: #selector(showSortingOptions))
+        let globeButton = UIBarButtonItem(image: UIImage(systemName: "globe"), style: .plain, target: self, action: #selector(openLanguageSettings))
+
+        self.navigationItem.rightBarButtonItem = sortButton
+        self.navigationItem.leftBarButtonItem = globeButton
+        
     }
     
     func bindViewmodel() {
@@ -78,7 +87,7 @@ class MainViewController: UIViewController {
     }
     
     @objc func showSortingOptions() {
-        let actionSheet = UIAlertController(title: "Sort Launches", message: "Select a sorting parameter", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "sortLaunches".localized(), message: "selectParameter".localized(), preferredStyle: .actionSheet)
         
         func addAction(for title: String, sortOption: MainViewModel.SortOption) {
             let isSelected = (viewModel.currentSortOption == sortOption)
@@ -87,16 +96,24 @@ class MainViewController: UIViewController {
                 self?.viewModel.sortLaunches(by: sortOption)
             }))
         }
-        addAction(for: "Sort by Date (Asc)", sortOption: .dateAsc)
-        addAction(for: "Sort by Date (Desc)", sortOption: .dateDesc)
-        addAction(for: "Sort by Name (Asc)", sortOption: .nameAsc)
-        addAction(for: "Sort by Name (Desc)", sortOption: .nameDesc)
-        addAction(for: "Sort by Success (Asc)", sortOption: .successAsc)
-        addAction(for: "Sort by Success (Desc)", sortOption: .successDesc)
+        addAction(for: "sortByDateAsc".localized(), sortOption: .dateAsc)
+        addAction(for: "sortByDateDesc".localized(), sortOption: .dateDesc)
+        addAction(for: "sortByNameAsc".localized(), sortOption: .nameAsc)
+        addAction(for: "sortByNameDesc".localized(), sortOption: .nameDesc)
+        addAction(for: "sortBySuccessAsc".localized(), sortOption: .successAsc)
+        addAction(for: "sortBySuccessDesc".localized(), sortOption: .successDesc)
         
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "cancel".localized(), style: .cancel, handler: nil))
         
         present(actionSheet, animated: true, completion: nil)
+    }
+    
+    @objc func openLanguageSettings() {
+        if let appSettingsURL = URL(string: UIApplication.openSettingsURLString) {
+            if UIApplication.shared.canOpenURL(appSettingsURL) {
+                UIApplication.shared.open(appSettingsURL, options: [:], completionHandler: nil)
+            }
+        }
     }
     
 }

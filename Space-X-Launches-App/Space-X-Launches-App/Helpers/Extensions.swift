@@ -33,6 +33,10 @@ extension String {
         return URL(string: self)
     }
     
+    func localized() -> String {
+        NSLocalizedString(self, comment: "")
+    }
+    
 }
 
 extension URL {
