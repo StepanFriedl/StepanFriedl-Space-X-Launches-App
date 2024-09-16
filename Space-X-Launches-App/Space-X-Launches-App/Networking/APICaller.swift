@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 enum NetworkError: Error {
     case urlError
     case cannotParseData
@@ -25,12 +26,23 @@ public class APICaller {
         }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
-            if let data = data,
-               let resultData = try? JSONDecoder().decode(PastLaunches.self, from: data) {
-                completionHandler(.success(resultData))
-            } else {
+            guard let data = data else {
                 completionHandler(.failure(.cannotParseData))
+                return
             }
+            
+            let result = APICaller.parseLaunchData(data)
+            completionHandler(result)
+            
         }.resume()
+    }
+    
+    static func parseLaunchData(_ data: Data) -> Result<PastLaunches, NetworkError> {
+        do {
+            let launches = try JSONDecoder().decode(PastLaunches.self, from: data)
+            return .success(launches)
+        } catch {
+            return .failure(.cannotParseData)
+        }
     }
 }

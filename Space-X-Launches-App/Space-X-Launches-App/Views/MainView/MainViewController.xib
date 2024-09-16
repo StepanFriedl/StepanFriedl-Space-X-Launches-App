@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="Space_X_Launches_App" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="pOe-Ep-ndk" id="jV9-PS-mZF"/>
+                <outlet property="tableView" destination="flw-Xs-7AX" id="nEy-fX-XrO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,27 +21,34 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello World" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRr-m9-q0X">
-                    <rect key="frame" x="0.0" y="415.66666666666669" width="393" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="flw-Xs-7AX">
+                    <rect key="frame" x="0.0" y="59" width="393" height="793"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="pOe-Ep-ndk">
+                    <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                    <color key="color" systemColor="systemGray2Color"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="VRr-m9-q0X" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="HMC-1T-JMz"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VRr-m9-q0X" secondAttribute="trailing" id="LEs-jh-9M9"/>
-                <constraint firstItem="VRr-m9-q0X" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="rNF-e4-kCX"/>
-                <constraint firstItem="VRr-m9-q0X" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xyE-Qb-ZyQ"/>
+                <constraint firstItem="flw-Xs-7AX" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="0dY-AO-0Zt"/>
+                <constraint firstAttribute="bottom" secondItem="flw-Xs-7AX" secondAttribute="bottom" id="43i-hw-9IA"/>
+                <constraint firstItem="flw-Xs-7AX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6ul-u1-8fg"/>
+                <constraint firstItem="pOe-Ep-ndk" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="BDw-Lc-jX5"/>
+                <constraint firstItem="pOe-Ep-ndk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="RFw-HO-vw1"/>
+                <constraint firstItem="flw-Xs-7AX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="mbO-Oa-od4"/>
             </constraints>
-            <point key="canvasLocation" x="114" y="-11"/>
+            <point key="canvasLocation" x="113.74045801526717" y="-11.267605633802818"/>
         </view>
     </objects>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
