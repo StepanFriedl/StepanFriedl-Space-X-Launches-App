@@ -1,0 +1,8 @@
+disabled_rules: # rule identifiers to exclude from linting
+  - line_length
+opt_in_rules: # some rules are opt-in
+  - empty_count
+included: # paths to include during linting
+  - Source
+excluded: # paths to ignore during linting
+  - Pods
