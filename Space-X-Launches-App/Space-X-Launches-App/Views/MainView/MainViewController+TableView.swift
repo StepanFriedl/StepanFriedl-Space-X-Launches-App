@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+extension MainViewController: UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     func setupTableView() {
         self.tableView.delegate = self
@@ -16,18 +16,43 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         self.tableView.backgroundColor = .clear
         
         setupTableHeader()
-        
         registerCells()
     }
     
     func setupTableHeader() {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 50))
         let searchTextField = UITextField(frame: CGRect(x: 10, y: 10, width: headerView.frame.width - 20, height: 30))
-        searchTextField.placeholder = "Search Launches by Name"
+        searchTextField.placeholder = "searchLaunchesByName".localized()
         searchTextField.borderStyle = .roundedRect
         searchTextField.addTarget(self, action: #selector(searchTextChanged), for: .editingChanged)
+        
+        setupKeyboardToolbar(for: searchTextField)
+        searchTextField.delegate = self
+        
         headerView.addSubview(searchTextField)
         tableView.tableHeaderView = headerView
+    }
+    
+    func setupKeyboardToolbar(for textField: UITextField) {
+        let toolbar = UIToolbar()
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        toolbar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "done".localized(), style: .done, target: self, action: #selector(dismissKeyboard))
+        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        toolbar.items = [spacer, doneButton]
+        textField.inputAccessoryView = toolbar
+    }
+
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        dismissKeyboard()
+        return true
+    }
+
+    @objc func dismissKeyboard() {
+        DispatchQueue.main.async {
+            self.view.endEditing(true)
+        }
     }
     
     func registerCells() {
@@ -66,6 +91,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         if let launchID = viewModel.filteredCellDataSource.value?[indexPath.row].id {
             self.openDetail(launchID)
         }
+        dismissKeyboard()
     }
     
 }

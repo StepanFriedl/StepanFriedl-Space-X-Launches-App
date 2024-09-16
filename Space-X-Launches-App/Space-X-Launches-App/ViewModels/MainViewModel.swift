@@ -48,7 +48,6 @@ class MainViewModel {
             self?.isLoading.value = false
             switch result {
             case .success(let data):
-                print("Data count: \(data.count)")
                 self?.dataSource = data
                 self?.mapCellData()
             case .failure(let error):

@@ -21,8 +21,8 @@ class DetailsViewModel: ObservableObject {
     var wikiLink: URL?
     
     init(launch: Launch) {
-        self.id = launch.id ?? "unknown"
-        self.name = launch.name ?? "unknown"
+        self.id = launch.id ?? "unknown".localized()
+        self.name = launch.name ?? "unknown".localized()
         self.flightNumber = launch.flightNumber
         self.success = launch.success
         self.failures = launch.failures

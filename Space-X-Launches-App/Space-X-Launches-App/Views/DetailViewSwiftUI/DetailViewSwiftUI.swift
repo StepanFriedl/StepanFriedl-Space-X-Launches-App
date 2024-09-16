@@ -32,7 +32,7 @@ struct DetailViewSwiftUI: View {
                 // MARK: - Flight Number
                 if let flightNumber = viewModel.flightNumber {
                     VStack (alignment: .leading, spacing: 8) {
-                        Text("Flight Number:")
+                        Text("flightNumber".localized())
                             .font(.caption2)
                         
                         Text("\(flightNumber)")
@@ -43,7 +43,7 @@ struct DetailViewSwiftUI: View {
                 // MARK: - Launched Date
                 if let launchedDate = viewModel.launched {
                     VStack (alignment: .leading, spacing: 8) {
-                        Text("Launched:")
+                        Text("launched".localized())
                             .font(.caption2)
                         
                         Text("\(launchedDate.formatted())")
@@ -54,7 +54,7 @@ struct DetailViewSwiftUI: View {
                 // MARK: - Launch Success/Failure
                 if let success = viewModel.success {
                     VStack (alignment: .leading, spacing: 8) {
-                        Text("Launch Successful:")
+                        Text("launchSuccess".localized())
                             .font(.caption2)
                         
                         Image(systemName: success ? "checkmark.circle" : "xmark.circle")
@@ -69,7 +69,7 @@ struct DetailViewSwiftUI: View {
                 if let failures = viewModel.failures,
                    failures.count > 0 {
                     VStack (alignment: .leading, spacing: 8) {
-                        Text("Failures")
+                        Text("failures".localized())
                             .font(.caption2)
                         
                         VStack (spacing: 2) {
@@ -91,7 +91,7 @@ struct DetailViewSwiftUI: View {
                 // MARK: - External Links
                 if viewModel.isAnyLinkPresent() {
                     VStack (spacing: 8) {
-                        Text("Links")
+                        Text("links".localized())
                             .font(.title2)
                         
                         HStack {
@@ -100,7 +100,7 @@ struct DetailViewSwiftUI: View {
                             if let youtubeLink = viewModel.youtubeLink {
                                 linkButton(
                                     image: Image("youtube"),
-                                    text: "Youtube",
+                                    text: "youtube".localized(),
                                     action: youtubeLink.openInBrowser
                                 )
                                 
@@ -110,7 +110,7 @@ struct DetailViewSwiftUI: View {
                             if let articleLink = viewModel.articleLink {
                                 linkButton(
                                     image: Image(systemName: "book.fill"),
-                                    text: "Article",
+                                    text: "article".localized(),
                                     action: articleLink.openInBrowser
                                 )
                                 
@@ -120,7 +120,7 @@ struct DetailViewSwiftUI: View {
                             if let wikiLink = viewModel.wikiLink {
                                 linkButton(
                                     image: Image("wiki"),
-                                    text: "Wiki",
+                                    text: "wiki".localized(),
                                     action: wikiLink.openInBrowser
                                 )
                                 
@@ -135,7 +135,7 @@ struct DetailViewSwiftUI: View {
             .padding(.horizontal, 32)
             .padding(.bottom, 100)
         }
-        .navigationTitle("Launch Details")
+        .navigationTitle("launchDetails".localized())
         .navigationBarTitleDisplayMode(.inline)
     }
     
