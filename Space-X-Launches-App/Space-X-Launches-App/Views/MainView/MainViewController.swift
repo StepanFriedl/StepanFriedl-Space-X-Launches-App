@@ -15,12 +15,14 @@ class MainViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     // ViewModel:
     var viewModel: MainViewModel = MainViewModel()
-    // Cell data source
+    
     var cellDataSource: [MainLaunchCellViewModel] = []
+    var filteredCellDataSource: [MainLaunchCellViewModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.getData()
         configView()
         bindViewmodel()
     }
@@ -29,14 +31,11 @@ class MainViewController: UIViewController {
         self.title = "All past launches"
         self.view.backgroundColor = .systemBackground
         
+        let sortButton = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(showSortingOptions))
+        self.navigationItem.rightBarButtonItem = sortButton
+        
         setupTableView()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.getData()
-    }
-    
     
     func bindViewmodel() {
         viewModel.isLoading.bind { [weak self] isLoading in
@@ -52,11 +51,8 @@ class MainViewController: UIViewController {
             }
         }
         
-        viewModel.cellDataSource.bind { [weak self] launches in
-            guard let self = self, let launches = launches else {
-                return
-            }
-            self.cellDataSource = launches
+        viewModel.filteredCellDataSource.bind { [weak self] launches in
+            guard let self = self else { return }
             self.reloadTableView()
         }
     }
@@ -71,6 +67,36 @@ class MainViewController: UIViewController {
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(detailsHostingController, animated: true)
         }
+    }
+    
+    @objc func searchTextChanged(_ textField: UITextField) {
+        guard let searchText = textField.text else {
+            viewModel.filterLaunches(with: "")
+            return
+        }
+        viewModel.filterLaunches(with: searchText)
+    }
+    
+    @objc func showSortingOptions() {
+        let actionSheet = UIAlertController(title: "Sort Launches", message: "Select a sorting parameter", preferredStyle: .actionSheet)
+        
+        func addAction(for title: String, sortOption: MainViewModel.SortOption) {
+            let isSelected = (viewModel.currentSortOption == sortOption)
+            let checkmark = isSelected ? " ✓" : ""
+            actionSheet.addAction(UIAlertAction(title: title + checkmark, style: .default, handler: { [weak self] _ in
+                self?.viewModel.sortLaunches(by: sortOption)
+            }))
+        }
+        addAction(for: "Sort by Date (Asc)", sortOption: .dateAsc)
+        addAction(for: "Sort by Date (Desc)", sortOption: .dateDesc)
+        addAction(for: "Sort by Name (Asc)", sortOption: .nameAsc)
+        addAction(for: "Sort by Name (Desc)", sortOption: .nameDesc)
+        addAction(for: "Sort by Success (Asc)", sortOption: .successAsc)
+        addAction(for: "Sort by Success (Desc)", sortOption: .successDesc)
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(actionSheet, animated: true, completion: nil)
     }
     
 }

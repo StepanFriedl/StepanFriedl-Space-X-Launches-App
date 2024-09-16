@@ -15,7 +15,19 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         self.tableView.backgroundColor = .clear
         
+        setupTableHeader()
+        
         registerCells()
+    }
+    
+    func setupTableHeader() {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 50))
+        let searchTextField = UITextField(frame: CGRect(x: 10, y: 10, width: headerView.frame.width - 20, height: 30))
+        searchTextField.placeholder = "Search Launches by Name"
+        searchTextField.borderStyle = .roundedRect
+        searchTextField.addTarget(self, action: #selector(searchTextChanged), for: .editingChanged)
+        headerView.addSubview(searchTextField)
+        tableView.tableHeaderView = headerView
     }
     
     func registerCells() {
@@ -36,19 +48,24 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainLaunchCell.identifier, for: indexPath) as? MainLaunchCell else {
             return UITableViewCell()
         }
-        let cellViewModel = self.cellDataSource[indexPath.row]
-        cell.setupCell(viewModel: cellViewModel)
+        
+        if let cellViewModel = viewModel.filteredCellDataSource.value?[indexPath.row] {
+            cell.setupCell(viewModel: cellViewModel)
+        }
+        
         cell.selectionStyle = .none
         return cell
     }
+
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         100
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let launchID = cellDataSource[indexPath.row].id
-        self.openDetail(launchID)
+        if let launchID = viewModel.filteredCellDataSource.value?[indexPath.row].id {
+            self.openDetail(launchID)
+        }
     }
     
 }
