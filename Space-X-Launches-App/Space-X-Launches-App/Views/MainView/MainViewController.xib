@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="Space_X_Launches_App" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicator" destination="pOe-Ep-ndk" id="jV9-PS-mZF"/>
+                <outlet property="errorMessageLabel" destination="SCr-7L-6uu" id="Hym-13-hMA"/>
+                <outlet property="tableView" destination="flw-Xs-7AX" id="nEy-fX-XrO"/>
+                <outlet property="tryAgainButton" destination="McE-kY-zZX" id="kVw-wa-5bZ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="flw-Xs-7AX">
+                    <rect key="frame" x="0.0" y="59" width="393" height="793"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="pOe-Ep-ndk">
+                    <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                    <color key="color" systemColor="systemGray2Color"/>
+                </activityIndicatorView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCr-7L-6uu">
+                    <rect key="frame" x="16" y="426.66666666666669" width="361" height="24"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McE-kY-zZX" userLabel="Try again button">
+                    <rect key="frame" x="164.66666666666666" y="466.66666666666669" width="64" height="64.000000000000057"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="1fF-dw-QRK"/>
+                        <constraint firstAttribute="width" constant="64" id="7e3-Ey-jPc"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                    <connections>
+                        <action selector="tryAgainButtonTapped:" destination="-1" eventType="touchUpInside" id="Jeu-aM-TbI"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="flw-Xs-7AX" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="0dY-AO-0Zt"/>
+                <constraint firstAttribute="bottom" secondItem="flw-Xs-7AX" secondAttribute="bottom" id="43i-hw-9IA"/>
+                <constraint firstItem="flw-Xs-7AX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6ul-u1-8fg"/>
+                <constraint firstItem="McE-kY-zZX" firstAttribute="centerX" secondItem="SCr-7L-6uu" secondAttribute="centerX" id="8gy-Bo-z2h"/>
+                <constraint firstItem="pOe-Ep-ndk" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="BDw-Lc-jX5"/>
+                <constraint firstItem="SCr-7L-6uu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="BL5-7Y-AGu"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SCr-7L-6uu" secondAttribute="trailing" constant="16" id="E3N-Jz-E6g"/>
+                <constraint firstItem="McE-kY-zZX" firstAttribute="top" secondItem="SCr-7L-6uu" secondAttribute="bottom" constant="16" id="M9n-6H-zGP"/>
+                <constraint firstItem="pOe-Ep-ndk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="RFw-HO-vw1"/>
+                <constraint firstItem="SCr-7L-6uu" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="gWo-n8-KWR"/>
+                <constraint firstItem="flw-Xs-7AX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="mbO-Oa-od4"/>
+            </constraints>
+            <point key="canvasLocation" x="113.74045801526717" y="-11.267605633802818"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  Space-X-Launches-App
+
+  Created by Štěpán Friedl on 16.09.2024.
+  
+*/
+ 
+"allPastLaunched" = "All past launches";
+"sort" = "Sort";
+"sortLaunches" = "Sort Launches";
+"selectParameter" = "Select a sorting parameter";
+"sortByDateAsc" = "Sort by Date (↑)";
+"sortByDateDesc" = "Sort by Date (↓)";
+"sortByNameAsc" = "Sort by Name (↑)";
+"sortByNameDesc" = "Sort by Name (↓)";
+"sortBySuccessAsc" = "Sort by Success (↑)";
+"sortBySuccessDesc" = "Sort by Success (↓)";
+"cancel" = "Cancel";
+"flightNumber" = "Flight Number:";
+"launched" = "Launched:";
+"launchSuccess" = "Launch Successful:";
+"failures" = "Failures:";
+"links" = "Links";
+"youtube" = "Youtube";
+"article" = "Article";
+"wiki" = "Wiki";
+"launchDetails" = "Launch Details";
+"searchLaunchesByName" = "Search launches by name";
+"unknown" = "unknown";
+"done" = "Done";
+"dataLoadError" = "The data couldn’t be loaded. Please check your internet connection and try again.";

@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "rocket_launching.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

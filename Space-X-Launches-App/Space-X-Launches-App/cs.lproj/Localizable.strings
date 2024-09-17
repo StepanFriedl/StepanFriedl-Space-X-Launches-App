@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  Space-X-Launches-App
+
+  Created by Štěpán Friedl on 16.09.2024.
+  
+*/
+
+"allPastLaunched" = "Všechny vzlety";
+"sort" = "Seřadit";
+"sortLaunches" = "Seřadit Vzlety";
+"selectParameter" = "Vyberte parametr třídění";
+"sortByDateAsc" = "Seřadit podle Data (↑)";
+"sortByDateDesc" = "Seřadit podle Data (↓)";
+"sortByNameAsc" = "Sěřadit podle Jména (↑)";
+"sortByNameDesc" = "Sěřadit podle Jména (↓)";
+"sortBySuccessAsc" = "Seřadit podle Úspěchu (↑)";
+"sortBySuccessDesc" = "Seřadit podle Úspěchu (↓)";
+"cancel" = "Zrušit";
+"flightNumber" = "Číslo Letu:";
+"launched" = "Datum vzletu:";
+"launchSuccess" = "Úspěch:";
+"failures" = "Selhání:";
+"links" = "Odkazy";
+"youtube" = "Youtube";
+"article" = "Článek";
+"wiki" = "Wiki";
+"launchDetails" = "Detaily Vzletu";
+"searchLaunchesByName" = "Vyhledat podle jména";
+"unknown" = "neznámý";
+"done" = "Hotovo";
+"dataLoadError" = "Data se nepodařilo načíst. Zkontrolujte prosím připojení k internetu a zkuste to znovu.";

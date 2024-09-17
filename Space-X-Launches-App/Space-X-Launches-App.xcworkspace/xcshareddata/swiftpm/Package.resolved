@@ -1,0 +1,42 @@
+{
+  "originHash" : "17f9b69f48e0702b7ebbcaaf35cf2f96e1cbf05ae99adee1e5f72cc881687bc4",
+  "pins" : [
+    {
+      "identity" : "reachability.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ashleymills/Reachability.swift.git",
+      "state" : {
+        "revision" : "7cbd73f46a7dfaeca079e18df7324c6de6d1834a",
+        "version" : "5.2.3"
+      }
+    },
+    {
+      "identity" : "requestsqueue",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StepanFriedl/RequestsQueue.git",
+      "state" : {
+        "revision" : "18e77a7061d0b5c403438d6263b57735f1aee2e7",
+        "version" : "1.1.5"
+      }
+    },
+    {
+      "identity" : "sdwebimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImage.git",
+      "state" : {
+        "revision" : "8a1be70a625683bc04d6903e2935bf23f3c6d609",
+        "version" : "5.19.7"
+      }
+    },
+    {
+      "identity" : "sdwebimageswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI.git",
+      "state" : {
+        "revision" : "5aa947356f4ea49a0c3b9968564267f6ea5abea7",
+        "version" : "3.1.2"
+      }
+    }
+  ],
+  "version" : 3
+}
