@@ -75,24 +75,28 @@ Contributions are welcome! Please follow these steps:
    ```bash
    git clone https://github.com/yourusername/Space-X-Launches-App.git
    ```
-2. Switch to the develop branch:
+2. Navigate into the cloned repository directory:
+   ```bash 
+   cd StepanFriedl-Space-X-Launches-App/ 
+   ```
+3. Switch to the develop branch:
    ```bash 
    git checkout develop
    ```
-3. Create a new branch from develop:
+4. Create a new branch from develop:
    ```bash 
    git checkout -b your-feature-branch
    ```
-4. Make your changes and commit them:
+5. Make your changes and commit them:
    ```bash
    git add .
    git commit -m "Describe your changes"
    ```
-5. Push your branch to the repository:
+6. Push your branch to the repository:
    ```bash 
    git push origin your-feature-branch
    ```
-6. Submit a pull request with a clear description of your changes.
+7. Submit a pull request with a clear description of your changes.
 
 ## License
 This project is licensed under the MIT License.
