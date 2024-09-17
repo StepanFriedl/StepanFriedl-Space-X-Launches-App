@@ -88,7 +88,7 @@ struct DetailViewSwiftUI: View {
                     }
                 }
                 
-                // MARK: - External Links
+                // MARK: - Links
                 if viewModel.isAnyLinkPresent() {
                     VStack (spacing: 8) {
                         Text("links".localized())

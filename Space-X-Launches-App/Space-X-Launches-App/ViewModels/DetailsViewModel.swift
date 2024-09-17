@@ -9,6 +9,7 @@ import SwiftUI
 
 class DetailsViewModel: ObservableObject {
     
+    // MARK: - Properties
     var id: String
     var imageURL: URL?
     var name: String
@@ -20,6 +21,7 @@ class DetailsViewModel: ObservableObject {
     var articleLink: URL?
     var wikiLink: URL?
     
+    // MARK: - Initializers
     init(launch: Launch) {
         self.id = launch.id ?? "unknown".localized()
         self.name = launch.name ?? "unknown".localized()
@@ -28,7 +30,7 @@ class DetailsViewModel: ObservableObject {
         self.failures = launch.failures
         self.youtubeLink = launch.links?.webcast?.toUrl()
         self.articleLink = launch.links?.article?.toUrl()
-        self.wikiLink = launch.links?.article?.toUrl()
+        self.wikiLink = launch.links?.wikipedia?.toUrl()
         self.launched = launch.dateUTC?.toDate()
         self.imageURL = launch.links?.patch?.large?.toUrl()
     }
@@ -48,6 +50,7 @@ class DetailsViewModel: ObservableObject {
         self.wikiLink = URL(string: "https://en.wikipedia.org/wiki/DemoSat")
     }
     
+    // MARK: - Helper Methods
     func isAnyLinkPresent() -> Bool {
         youtubeLink != nil || articleLink != nil || wikiLink != nil
     }

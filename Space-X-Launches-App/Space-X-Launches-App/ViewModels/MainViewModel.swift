@@ -8,6 +8,8 @@
 import Foundation
 
 class MainViewModel {
+    
+    // MARK: - Enums
     enum SortOption: String {
         case dateAsc
         case dateDesc
@@ -17,11 +19,17 @@ class MainViewModel {
         case successDesc
     }
     
+    // MARK: - Observables
     var isLoading: Observable<Bool> = Observable(false)
+    var isErrorMessageShown: Observable<Bool> = Observable(false)
     var cellDataSource: Observable<[MainLaunchCellViewModel]> = Observable(nil)
     var filteredCellDataSource: Observable<[MainLaunchCellViewModel]> = Observable(nil)
-    var dataSource: PastLaunches?
     
+    // MARK: - Variables
+    var dataSource: PastLaunches?
+    var dataFetchTimer: Timer?
+    
+    // MARK: - Search and Sort State
     private var currentSearchQuery: String = ""
     lazy var currentSortOption: SortOption = {
         return loadSortOptionFromUserDefaults() ?? .dateAsc
@@ -31,48 +39,36 @@ class MainViewModel {
         }
     }
     
-    func numberOfSections() -> Int {
-        1
-    }
-    
-    func numberOfRows() -> Int {
-        self.filteredCellDataSource.value?.count ?? 0
-    }
-    
+    // MARK: - Data Fetching
     func getData() {
         if isLoading.value ?? true {
             return
         }
         isLoading.value = true
-        APICaller.getPastLaunches { [weak self] result in
+        isErrorMessageShown.value = false
+        startDataFetchTimer()
+        let requestUrlString = NetworkConstant.serverAddress + NetworkConstant.pastLaunches
+        APICaller.fetchData(from: requestUrlString) { [weak self] (result: Result<PastLaunches, NetworkError>) in
             self?.isLoading.value = false
             switch result {
             case .success(let data):
                 self?.dataSource = data
                 self?.mapCellData()
-            case .failure(let error):
-                print(error.localizedDescription)
+            case .failure:
+                self?.isErrorMessageShown.value = true
             }
         }
     }
-    
+
     func mapCellData() {
         let launches = self.dataSource?.compactMap { MainLaunchCellViewModel(launch: $0) }
         self.cellDataSource.value = launches
         self.applyFiltersAndSorting()
     }
     
-    func getCellTitle(_ launch: Launch) -> String {
-        return launch.name ?? ""
-    }
-    
-    func retrieveLaunch(with id: String) -> Launch? {
-        dataSource?.first(where: { $0.id == id })
-    }
-    
+    // MARK: - Sorting and Filtering
     func filterLaunches(with query: String) {
         currentSearchQuery = query
-        
         guard let launches = cellDataSource.value else { return }
         
         if query.isEmpty {
@@ -85,10 +81,9 @@ class MainViewModel {
         
         sortLaunches(by: currentSortOption)
     }
-    
+
     func sortLaunches(by option: SortOption) {
         currentSortOption = option
-        
         guard let launches = filteredCellDataSource.value else { return }
         
         switch option {
@@ -110,11 +105,43 @@ class MainViewModel {
             })
         }
     }
-    
+
     private func applyFiltersAndSorting() {
         filterLaunches(with: currentSearchQuery)
     }
     
+    // MARK: - Timer Management
+    func startDataFetchTimer() {
+        guard dataFetchTimer == nil else { return }
+        DispatchQueue.main.async {
+            self.dataFetchTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.handleDataFetchTimeout), userInfo: nil, repeats: false)
+        }
+    }
+
+    func stopDataFetchTimer() {
+        DispatchQueue.main.async {
+            self.dataFetchTimer?.invalidate()
+            self.dataFetchTimer = nil
+        }
+    }
+    
+    @objc func handleDataFetchTimeout() {
+        DispatchQueue.main.async {
+            self.stopDataFetchTimer()
+            self.isErrorMessageShown.value = true
+        }
+    }
+    
+    // MARK: - Launch Retrieval
+    func retrieveLaunch(with id: String) -> Launch? {
+        dataSource?.first(where: { $0.id == id })
+    }
+    
+    func cellViewModel(for indexPath: IndexPath) -> MainLaunchCellViewModel? {
+        filteredCellDataSource.value?[indexPath.row]
+    }
+    
+    // MARK: - User Defaults
     private func saveSortOptionToUserDefaults(_ sortOption: SortOption) {
         UserDefaults.standard.set(sortOption.rawValue, forKey: "sort_option")
     }
@@ -124,6 +151,20 @@ class MainViewModel {
             return nil
         }
         return SortOption(rawValue: rawValue)
+    }
+    
+    // MARK: - Search Query
+    func updateSearchQuery(_ query: String?) {
+        filterLaunches(with: query ?? "")
+    }
+    
+    // MARK: - Helper Methods
+    func numberOfSections() -> Int {
+        1
+    }
+    
+    func numberOfRows() -> Int {
+        self.filteredCellDataSource.value?.count ?? 0
     }
     
 }

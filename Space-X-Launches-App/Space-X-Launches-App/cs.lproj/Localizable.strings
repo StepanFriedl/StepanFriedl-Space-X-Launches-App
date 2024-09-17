@@ -29,3 +29,4 @@
 "searchLaunchesByName" = "Vyhledat podle jména";
 "unknown" = "neznámý";
 "done" = "Hotovo";
+"dataLoadError" = "Data se nepodařilo načíst. Zkontrolujte prosím připojení k internetu a zkuste to znovu.";
