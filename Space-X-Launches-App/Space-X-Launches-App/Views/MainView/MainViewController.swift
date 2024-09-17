@@ -10,42 +10,62 @@ import SwiftUI
 
 class MainViewController: UIViewController {
 
-    // IBoutlets
+    // MARK: - IBoutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    // ViewModel:
-    var viewModel: MainViewModel = MainViewModel()
+    @IBOutlet weak var errorMessageLabel: UILabel!
+    @IBOutlet weak var tryAgainButton: UIButton!
     
+    // MARK: - Properties:
+    var viewModel: MainViewModel = MainViewModel()
     var cellDataSource: [MainLaunchCellViewModel] = []
     var filteredCellDataSource: [MainLaunchCellViewModel] = []
     
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        activityIndicator.startAnimating()
         viewModel.getData()
         configView()
         bindViewmodel()
-        
     }
     
+    // MARK: - UI Configuration
     func configView() {
         self.title = "allPastLaunched".localized()
         self.view.backgroundColor = .systemBackground
         
         setupToolbarButtons()
-        
         setupTableView()
+        setupErrorMessageView()
+    }
+    
+    func setupErrorMessageView() {
+        let iconImage = UIImage(systemName: "arrow.clockwise")?.withRenderingMode(.alwaysOriginal)
+        let scaledImage = iconImage?.resized(to: CGSize(width: 48, height: 48))
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = scaledImage
+        tryAgainButton.configuration = configuration
+        
+        tryAgainButton.setTitle("", for: .normal)
+        tryAgainButton.isHidden = true
+        
+        errorMessageLabel.text = "dataLoadError".localized()
+        errorMessageLabel.isHidden = true
     }
     
     func setupToolbarButtons() {
         let sortButton = UIBarButtonItem(title: "sort".localized(), style: .plain, target: self, action: #selector(showSortingOptions))
         let globeButton = UIBarButtonItem(image: UIImage(systemName: "globe"), style: .plain, target: self, action: #selector(openLanguageSettings))
-
+        
         self.navigationItem.rightBarButtonItem = sortButton
         self.navigationItem.leftBarButtonItem = globeButton
         
     }
-    
+
+    // MARK: - Bind ViewModel
     func bindViewmodel() {
         viewModel.isLoading.bind { [weak self] isLoading in
             guard let self = self, let isLoading = isLoading else {
@@ -54,6 +74,9 @@ class MainViewController: UIViewController {
             DispatchQueue.main.async {
                 if isLoading {
                     self.activityIndicator.startAnimating()
+                    self.tableView.isHidden = true
+                    self.errorMessageLabel.isHidden = true
+                    self.tryAgainButton.isHidden = true
                 } else {
                     self.activityIndicator.stopAnimating()
                 }
@@ -61,31 +84,41 @@ class MainViewController: UIViewController {
         }
         
         viewModel.filteredCellDataSource.bind { [weak self] launches in
-            guard let self = self else { return }
-            self.reloadTableView()
+            guard let self = self, let _ = launches else { return }
+            DispatchQueue.main.async {
+                self.reloadTableView()
+                self.errorMessageLabel.isHidden = true
+                self.tryAgainButton.isHidden = true
+                self.tableView.isHidden = false
+                
+                self.viewModel.stopDataFetchTimer()
+            }
+        }
+        
+        viewModel.isErrorMessageShown.bind { [weak self] isErrorMessageShown in
+            guard let self = self, let isErrorMessageShown = isErrorMessageShown else { return }
+            DispatchQueue.main.async {
+                if isErrorMessageShown {
+                    self.errorMessageLabel.isHidden = false
+                    self.tryAgainButton.isHidden = false
+                    self.tableView.isHidden = true
+                    self.viewModel.isLoading.value = false
+                    self.activityIndicator.stopAnimating()
+                } else {
+                    self.errorMessageLabel.isHidden = true
+                    self.tryAgainButton.isHidden = true
+                }
+            }
         }
     }
 
-    func openDetail(_ launchID: String) {
-        guard let launch = viewModel.retrieveLaunch(with: launchID) else {
-            return
-        }
-        let detailsViewModel = DetailsViewModel(launch: launch)
-        let detailsView = DetailViewSwiftUI(viewModel: detailsViewModel)
-        let detailsHostingController = UIHostingController(rootView: detailsView)
-        DispatchQueue.main.async {
-            self.navigationController?.pushViewController(detailsHostingController, animated: true)
-        }
+    // MARK: - @IBActions
+    @IBAction func tryAgainButtonTapped(_ sender: UIButton) {
+        viewModel.getData()
+        sender.animateClick()
     }
-    
-    @objc func searchTextChanged(_ textField: UITextField) {
-        guard let searchText = textField.text else {
-            viewModel.filterLaunches(with: "")
-            return
-        }
-        viewModel.filterLaunches(with: searchText)
-    }
-    
+
+    // MARK: - User Actions
     @objc func showSortingOptions() {
         let actionSheet = UIAlertController(title: "sortLaunches".localized(), message: "selectParameter".localized(), preferredStyle: .actionSheet)
         
@@ -113,6 +146,19 @@ class MainViewController: UIViewController {
             if UIApplication.shared.canOpenURL(appSettingsURL) {
                 UIApplication.shared.open(appSettingsURL, options: [:], completionHandler: nil)
             }
+        }
+    }
+
+    // MARK: - Navigation
+    func openDetail(_ launchID: String) {
+        guard let launch = viewModel.retrieveLaunch(with: launchID) else {
+            return
+        }
+        let detailsViewModel = DetailsViewModel(launch: launch)
+        let detailsView = DetailViewSwiftUI(viewModel: detailsViewModel)
+        let detailsHostingController = UIHostingController(rootView: detailsView)
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(detailsHostingController, animated: true)
         }
     }
     

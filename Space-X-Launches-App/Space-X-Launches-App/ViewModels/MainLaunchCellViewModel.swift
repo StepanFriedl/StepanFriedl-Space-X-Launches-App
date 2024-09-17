@@ -9,12 +9,14 @@ import Foundation
 
 class MainLaunchCellViewModel {
     
+    // MARK: - Properties
     var id: String
     var name: String
     var date: Date?
     var imageUrl: URL?
     var isSuccess: Bool?
     
+    // MARK: - Initializer
     init(launch: Launch) {
         self.id = launch.id ?? ""
         self.name = launch.name ?? ""
@@ -23,6 +25,7 @@ class MainLaunchCellViewModel {
         self.imageUrl = launch.links?.patch?.small?.toUrl()
     }
         
+    // MARK: - Date Formatting
     func dateFormatted() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd. MM. yyyy HH:mm"
@@ -31,4 +34,5 @@ class MainLaunchCellViewModel {
         }
         return dateFormatter.string(from: date)
     }
+    
 }

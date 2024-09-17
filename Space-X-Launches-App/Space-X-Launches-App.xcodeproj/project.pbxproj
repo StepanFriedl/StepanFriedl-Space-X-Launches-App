@@ -33,6 +33,7 @@
 		FDCBBBD32C9849A600C29C06 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1AD47B2C9734F100698A02 /* APICaller.swift */; };
 		FDCBBBD42C9849AB00C29C06 /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1AD4842C9739E900698A02 /* Launch.swift */; };
 		FDCBBBD52C9849BF00C29C06 /* NetworkConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1AD4822C9736D200698A02 /* NetworkConstant.swift */; };
+		FDEEAA832C999DBE00927450 /* RequestsQueue in Frameworks */ = {isa = PBXBuildFile; productRef = FDEEAA822C999DBE00927450 /* RequestsQueue */; };
 		FDF418AE2C98A1B6009BC7C8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDF418AC2C98A1B6009BC7C8 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDCBBBD02C98489900C29C06 /* SDWebImageSwiftUI in Frameworks */,
+				FDEEAA832C999DBE00927450 /* RequestsQueue in Frameworks */,
 				9C5C53F213F711AEB47440A1 /* Pods_Space_X_Launches_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +274,7 @@
 			name = "Space-X-Launches-App";
 			packageProductDependencies = (
 				FDCBBBCF2C98489900C29C06 /* SDWebImageSwiftUI */,
+				FDEEAA822C999DBE00927450 /* RequestsQueue */,
 			);
 			productName = "Space-X-Launches-App";
 			productReference = FDBDCA1D2C972E6F002B06B3 /* Space-X-Launches-App.app */;
@@ -329,6 +332,7 @@
 			mainGroup = FDBDCA142C972E6F002B06B3;
 			packageReferences = (
 				FDCBBBCE2C98489900C29C06 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				FDEEAA812C999DBE00927450 /* XCRemoteSwiftPackageReference "RequestsQueue" */,
 			);
 			productRefGroup = FDBDCA1E2C972E6F002B06B3 /* Products */;
 			projectDirPath = "";
@@ -737,6 +741,14 @@
 				minimumVersion = 3.1.2;
 			};
 		};
+		FDEEAA812C999DBE00927450 /* XCRemoteSwiftPackageReference "RequestsQueue" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StepanFriedl/RequestsQueue.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.5;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -749,6 +761,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FDCBBBCE2C98489900C29C06 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		FDEEAA822C999DBE00927450 /* RequestsQueue */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FDEEAA812C999DBE00927450 /* XCRemoteSwiftPackageReference "RequestsQueue" */;
+			productName = RequestsQueue;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

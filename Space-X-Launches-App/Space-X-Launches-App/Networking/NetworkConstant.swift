@@ -7,12 +7,12 @@
 
 import Foundation
 
-class NetworkConstant {
-    public static var shared = NetworkConstant()
+struct NetworkConstant {
     
-    private init() {}
+    // MARK: - Base URL
+    static let serverAddress = "https://api.spacexdata.com/"
     
-    let serverAddress = "https://api.spacexdata.com/"
+    // MARK: - Endpoints
+    static let pastLaunches = "v5/launches/past"
     
-    let pastLaunches = "v5/launches/past"
 }

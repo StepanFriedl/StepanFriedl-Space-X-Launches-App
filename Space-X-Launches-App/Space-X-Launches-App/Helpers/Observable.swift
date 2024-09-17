@@ -9,6 +9,7 @@ import Foundation
 
 class Observable<T> {
     
+    // MARK: - Properties
     var value: T? {
         didSet {
             DispatchQueue.main.async {
@@ -17,14 +18,17 @@ class Observable<T> {
         }
     }
     
+    private var listener: ((T?) -> Void)?
+
+    // MARK: - Initializer
     init(_ value: T?) {
         self.value = value
     }
     
-    private var listener: ((T?) -> Void)?
-    
+    // MARK: - Binding
     func bind(_ listener: @escaping ((T?) -> Void)) {
         listener(value)
         self.listener = listener
     }
+    
 }

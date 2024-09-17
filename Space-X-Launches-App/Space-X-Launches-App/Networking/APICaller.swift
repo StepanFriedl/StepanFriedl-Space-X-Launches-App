@@ -6,43 +6,49 @@
 //
 
 import Foundation
+import RequestsQueue
 
-
+// MARK: - NetworkError Enum
 enum NetworkError: Error {
     case urlError
     case cannotParseData
 }
 
+// MARK: - APICaller Class
 public class APICaller {
     
-    static func getPastLaunches(
-        completionHandler: @escaping (_ result: Result<PastLaunches, NetworkError>) -> Void
+    // MARK: - Fetch Past Launches
+    static func fetchData<T: Decodable>(
+        from urlString: String,
+        completionHandler: @escaping (_ result: Result<T, NetworkError>) -> Void
     ) {
-        let requestUrlString = NetworkConstant.shared.serverAddress +
-        NetworkConstant.shared.pastLaunches
-        guard let url = URL(string: requestUrlString) else {
+        guard let url = URL(string: urlString) else {
             completionHandler(.failure(.urlError))
             return
         }
         
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else {
-                completionHandler(.failure(.cannotParseData))
-                return
-            }
-            
-            let result = APICaller.parseLaunchData(data)
-            completionHandler(result)
-            
-        }.resume()
+        NetworkMonitor.shared.requestsQueueManager.addRequest(requestID: "getPastLaunches") {
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                guard let data = data else {
+                    completionHandler(.failure(.cannotParseData))
+                    return
+                }
+                
+                let result: Result<T, NetworkError> = APICaller.parseLaunchData(data)
+                completionHandler(result)
+                
+            }.resume()
+        }
     }
     
-    static func parseLaunchData(_ data: Data) -> Result<PastLaunches, NetworkError> {
+    // MARK: - Data Parsing
+    static func parseLaunchData<T: Decodable>(_ data: Data) -> Result<T, NetworkError> {
         do {
-            let launches = try JSONDecoder().decode(PastLaunches.self, from: data)
-            return .success(launches)
+            let decodedData = try JSONDecoder().decode(T.self, from: data)
+            return .success(decodedData)
         } catch {
             return .failure(.cannotParseData)
         }
     }
+    
 }
